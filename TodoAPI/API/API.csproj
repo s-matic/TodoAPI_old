@@ -4,7 +4,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="DataAccess" />
-    <Folder Include="Domain\Interfaces" />
     <Folder Include="Logic\Commands" />
     <Folder Include="Logic\Queries" />
     <Folder Include="wwwroot\" />
