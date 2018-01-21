@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using API.Domain.Interfaces;
 using API.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -19,28 +20,28 @@ namespace API.Controllers
             _todoCommands = todoCommands;
         }
         [HttpGet]
-        public IEnumerable<TodoItem> Get()
+        public async Task<IEnumerable<TodoItem>> Get()
         {
-            var items = _todoQueries.Get();
+            var items = await _todoQueries.Get();
             return items;
         }
 
-        public TodoItem Get(int Id)
+        public Task<TodoItem> Get(int Id)
         {
             throw new NotImplementedException();
         }
 
-        public void Post(TodoItem item)
+        public Task Post(TodoItem item)
         {
             throw new NotImplementedException();
         }
 
-        public void Put(TodoItem item)
+        public Task Put(TodoItem item)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(int Id)
+        public Task Delete(int Id)
         {
             throw new NotImplementedException();
         }

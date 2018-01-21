@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using API.Controllers;
+using API.DataAccess;
 using API.Logic.Commands;
 using API.Logic.Queries;
 using API.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace API.Tests.ControllerTests
@@ -12,26 +15,34 @@ namespace API.Tests.ControllerTests
     [TestClass]
     public class TodoControllerTests
     {
-        private TodoController _todoController;
+        private readonly TodoController _todoController;
 
         public TodoControllerTests()
         {
-            _todoController = new TodoController(new TodoQueries(), new TodoCommands());
+            var options = new DbContextOptionsBuilder<TodoContext>()
+                .UseInMemoryDatabase(databaseName: "TodoQueriesTests")
+                .Options;
+            
+            var context = new TodoContext(options);
+            var dataAccess = new TodoDataAccess(context);
+            var queries = new TodoQueries(dataAccess);
+            var commands = new TodoCommands();
+            
+            _todoController = new TodoController(queries, commands);
         }
 
         [TestMethod]
         [TestCategory("TodoControllerTests")]
-        public void Should_return_list_of_todo_items()
+        public async Task Should_return_empty_list_of_todo_items()
         {
             //Arrange
-            List<TodoItem> result;
-            int expected = 1;
+            int expected = 0;
             
             //Act
-            result = _todoController.Get().ToList();
+            var result = await _todoController.Get();
             
             //Assert
-            Assert.AreEqual(result.Count, expected);
+            Assert.AreEqual(result.ToList().Count, expected);
         }
         
     }

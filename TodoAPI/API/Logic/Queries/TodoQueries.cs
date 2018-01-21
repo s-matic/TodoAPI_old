@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using API.Domain.Interfaces;
 using API.Models;
 
@@ -6,14 +7,22 @@ namespace API.Logic.Queries
 {
     public class TodoQueries : ITodoQueries
     {
-        public IEnumerable<TodoItem> Get()
+        private ITodoDataAccess _todoDataAccess;
+
+        public TodoQueries(ITodoDataAccess todoDataAccess)
         {
-            throw new System.NotImplementedException();
+            _todoDataAccess = todoDataAccess;
+        }
+        public async Task<IEnumerable<TodoItem>> Get()
+        {
+            var result = await _todoDataAccess.Get();
+            return result;
         }
 
-        public TodoItem Get(int Id)
+        public async Task<TodoItem> Get(int Id)
         {
-            throw new System.NotImplementedException();
+            var result = await _todoDataAccess.Get(Id);
+            return result;
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.DataAccess;
 using API.Domain.Interfaces;
 using API.Logic.Commands;
 using API.Logic.Queries;
@@ -29,6 +30,8 @@ namespace API
             services.AddMvc();
             services.AddTransient<ITodoQueries, TodoQueries>();
             services.AddTransient<ITodoCommands, TodoCommands>();
+            services.AddTransient<ITodoDataAccess, TodoDataAccess>();
+            services.AddTransient<ITodoDataAccess, TodoDataAccess>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

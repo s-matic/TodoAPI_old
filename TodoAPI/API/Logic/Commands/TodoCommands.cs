@@ -1,16 +1,17 @@
-﻿using API.Domain.Interfaces;
+﻿using System.Threading.Tasks;
+using API.Domain.Interfaces;
 using API.Models;
 
 namespace API.Logic.Commands
 {
     public class TodoCommands : ITodoCommands
     {
-        public int Save(TodoItem Item)
+        public async Task<int> Save(TodoItem Item)
         {
             throw new System.NotImplementedException();
         }
 
-        public int Delete(int Id)
+        public async Task<int> Delete(int Id)
         {
             throw new System.NotImplementedException();
         }

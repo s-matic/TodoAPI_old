@@ -4,12 +4,11 @@ using API.Models;
 
 namespace API.Domain.Interfaces
 {
-    public interface ITodoController
+    public interface ITodoDataAccess
     {
         Task<IEnumerable<TodoItem>> Get();
         Task<TodoItem> Get(int Id);
-        Task Post(TodoItem item);
-        Task Put(TodoItem item);
-        Task Delete(int Id);
+        Task<int> Save(TodoItem item);
+        Task<int> Delete(int Id);
     }
 }
