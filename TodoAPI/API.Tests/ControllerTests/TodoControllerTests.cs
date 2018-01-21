@@ -2,6 +2,8 @@
 using System.Linq;
 using System.Threading;
 using API.Controllers;
+using API.Logic.Commands;
+using API.Logic.Queries;
 using API.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -14,7 +16,7 @@ namespace API.Tests.ControllerTests
 
         public TodoControllerTests()
         {
-            _todoController = new TodoController();
+            _todoController = new TodoController(new TodoQueries(), new TodoCommands());
         }
 
         [TestMethod]
