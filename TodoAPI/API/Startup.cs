@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.Domain.Interfaces;
+using API.Logic.Commands;
+using API.Logic.Queries;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -24,6 +27,8 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddTransient<ITodoQueries, TodoQueries>();
+            services.AddTransient<ITodoCommands, TodoCommands>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
