@@ -10,10 +10,19 @@ namespace API.Controllers
     [Route("api/[controller]")]
     public class TodoController : Controller, ITodoController
     {
+        private readonly ITodoQueries _todoQueries;
+        private readonly ITodoCommands _todoCommands;
+
+        public TodoController(ITodoQueries todoQueries, ITodoCommands todoCommands)
+        {
+            _todoQueries = todoQueries;
+            _todoCommands = todoCommands;
+        }
         [HttpGet]
         public IEnumerable<TodoItem> Get()
         {
-            throw new NotImplementedException();
+            var items = _todoQueries.Get();
+            return items;
         }
 
         public TodoItem Get(int Id)
