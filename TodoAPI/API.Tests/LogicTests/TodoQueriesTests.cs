@@ -37,11 +37,11 @@ namespace API.Tests.ControllerTests
 
         [TestMethod]
         [TestCategory("TodoQueriesTests")]
-        public async Task Should_one_todo_item()
+        public async Task Should_return_one_todo_item()
         {
             //Arrange
             var options = new DbContextOptionsBuilder<TodoContext>()
-                .UseInMemoryDatabase(databaseName: "Should_return_empty_list_of_todo_items")
+                .UseInMemoryDatabase(databaseName: "Should_return_one_todo_item")
                 .Options;
             
             var context = new TodoContext(options);      

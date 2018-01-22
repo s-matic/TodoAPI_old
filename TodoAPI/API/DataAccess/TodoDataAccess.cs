@@ -27,10 +27,25 @@ namespace API.DataAccess
 
         public async Task<int> Save(TodoItem item)
         {
-            throw new System.NotImplementedException();
+            if (item.Id == 0)
+                return await Insert(item);
+            
+            return await Update(item);
         }
 
-        public async Task<int> Delete(int Id)
+        private async Task<int> Update(TodoItem item)
+        {
+            _todoContext.TodoItems.Update(item);
+            return await _todoContext.SaveChangesAsync();
+        }
+
+        private async Task<int> Insert(TodoItem item)
+        {
+            await _todoContext.TodoItems.AddAsync(item);
+            return await _todoContext.SaveChangesAsync();
+        }
+
+        public async Task<int> Delete(int id)
         {
             throw new System.NotImplementedException();
         }

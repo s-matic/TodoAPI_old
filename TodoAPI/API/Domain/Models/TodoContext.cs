@@ -1,4 +1,5 @@
-﻿using API.Domain.Interfaces;
+﻿using System.Threading.Tasks;
+using API.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Models
@@ -17,6 +18,11 @@ namespace API.Models
         }
         
         public DbSet<TodoItem> TodoItems { get; set; }
+        
+        public async Task<int> SaveChangesAsync()
+        {
+            return await base.SaveChangesAsync();
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

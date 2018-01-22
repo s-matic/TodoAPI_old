@@ -26,7 +26,7 @@ namespace API.Tests.ControllerTests
             var context = new TodoContext(options);
             var dataAccess = new TodoDataAccess(context);
             var queries = new TodoQueries(dataAccess);
-            var commands = new TodoCommands();
+            var commands = new TodoCommands(dataAccess);
             
             _todoController = new TodoController(queries, commands);
         }

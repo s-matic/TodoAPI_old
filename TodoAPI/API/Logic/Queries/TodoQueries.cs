@@ -7,7 +7,7 @@ namespace API.Logic.Queries
 {
     public class TodoQueries : ITodoQueries
     {
-        private ITodoDataAccess _todoDataAccess;
+        private readonly ITodoDataAccess _todoDataAccess;
 
         public TodoQueries(ITodoDataAccess todoDataAccess)
         {
@@ -18,7 +18,6 @@ namespace API.Logic.Queries
             var result = await _todoDataAccess.Get();
             return result;
         }
-
         public async Task<TodoItem> Get(int Id)
         {
             var result = await _todoDataAccess.Get(Id);

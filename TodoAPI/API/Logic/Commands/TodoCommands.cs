@@ -6,12 +6,19 @@ namespace API.Logic.Commands
 {
     public class TodoCommands : ITodoCommands
     {
-        public async Task<int> Save(TodoItem Item)
+        private ITodoDataAccess _todoDataAccess;
+
+        public TodoCommands(ITodoDataAccess todoDataAccess)
         {
-            throw new System.NotImplementedException();
+            _todoDataAccess = todoDataAccess;
+        }
+        public async Task<int> Save(TodoItem item)
+        {
+            var result = await _todoDataAccess.Save(item);
+            return result;
         }
 
-        public async Task<int> Delete(int Id)
+        public async Task<int> Delete(int id)
         {
             throw new System.NotImplementedException();
         }
